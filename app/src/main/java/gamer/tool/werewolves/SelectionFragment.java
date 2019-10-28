@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.NumberPicker;
 
 /**
  * 在此写用途
@@ -25,6 +26,7 @@ public class SelectionFragment extends Fragment {
     private static final String TAG = "SelectionFragment";
 
     Button button;
+    NumberPicker pepolePicker;
 
     /**
      * Use this factory method to create a new instance of
@@ -41,7 +43,7 @@ public class SelectionFragment extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
-        
+
         return fragment;
     }
 
@@ -54,6 +56,8 @@ public class SelectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_selection, container, false);
         initView(root);
+        setListener();
+        setPicker();
         return root;
     }
 
@@ -64,10 +68,18 @@ public class SelectionFragment extends Fragment {
 
     private void initView(View view) {
         button = view.findViewById(R.id.btn);
+        pepolePicker = view.findViewById(R.id.people_picker);
+    }
+
+    private void setPicker() {
+        pepolePicker.setMaxValue(16);
+        pepolePicker.setMinValue(9);
+        pepolePicker.setValue(9);
+        pepolePicker.setWrapSelectorWheel(false);
     }
 
     private void setListener() {
-        //button.setOnClickListener(v -> changeFragment());
+        button.setOnClickListener(v -> changeFragment());
     }
 
     private void changeFragment() {
